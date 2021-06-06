@@ -1,12 +1,8 @@
 import React from "react";
-import {Container} from "react-bootstrap";
+const Library = () => {
 
-const Library=()=>{
-
-    return(
-        <Container fluid>
-            <Library/>
-        </Container>
+    return (
+        <Library/>
     )
 }
 export default Library;
