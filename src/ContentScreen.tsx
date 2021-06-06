@@ -1,11 +1,12 @@
 import React from "react";
+import {Container} from "react-bootstrap";
 
 const Library=()=>{
 
     return(
-        <div>
-
-        </div>
+        <Container fluid>
+            <Library/>
+        </Container>
     )
 }
 export default Library;
