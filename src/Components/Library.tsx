@@ -1,10 +1,14 @@
 import React from "react";
+import {Col, Row} from "react-bootstrap";
+import WelcomeScreen from "./WelcomeScreen";
 
 const Library=()=>{
     return(
-        <div>
-            <h1>Hello World</h1>
-        </div>
+        <Row className="Library mx-0">
+            <Col className="px-0">
+                <WelcomeScreen/>
+            </Col>
+        </Row>
     )
 }
 
