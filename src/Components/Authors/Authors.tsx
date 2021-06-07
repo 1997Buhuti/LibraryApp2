@@ -1,5 +1,7 @@
 import React, {FC} from "react";
 import {Col, Container, Row} from "react-bootstrap";
+import AuthorList from "./AuthorList";
+import {Plus} from "react-feather";
 
 const Authors: FC = () => {
     return (
@@ -10,13 +12,13 @@ const Authors: FC = () => {
                 </Col>
             </Row>
             <Row>
-                <Col xs={12} className="px-0 pt-4">
-                   <p>Author List</p>
+                <Col xs={12} className=" author-list-container px-0 pt-4">
+                   <AuthorList/>
                 </Col>
             </Row>
             <Row className="mt-3 mb-4">
-                <Col xs={12} className="px-0">
-                    <p>Add Author</p>
+                <Col xs={12} className="add-author">
+                    <Plus className="plus-btn"/> Add Author
                 </Col>
             </Row>
             <Row>
