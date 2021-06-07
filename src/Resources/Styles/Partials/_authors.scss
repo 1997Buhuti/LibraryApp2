@@ -29,9 +29,65 @@
   }
 }
 
+.author-form-container{
+  .author-form-title{
+    border-bottom: 5px solid $form_title_color;
+    font-size: x-large;
+    color: $form_title_color;
+  }
+  .submit-author-btn{
+    background-color: $form_btn_color;
+  }
+}
+
 .add-author{
   cursor: pointer;
   .plus-btn{
     color: $plus_icon_color;
+    cursor: pointer;
+  }
+}
+
+//Media Queries
+
+@media screen and (max-width: 768px) {
+  .authors-title {
+    font-size: x-large;
+    border-bottom: 2px solid black;
+  }
+  .author-list-container{
+    .author-info{
+      .author-info-text{
+        font-size: large;
+      }
+      .icons{
+        .edit-button{
+          color: $edit_btn_color;
+          width: 20px;
+          height: 20px;
+        }
+        .delete-button{
+          color: $delete_btn_color;
+          width: 23px;
+          height: 23px;
+        }
+      }
+    }
+  }
+
+  .author-form-container{
+    .author-form-title{
+      border-bottom: 5px solid $form_title_color;
+      font-size: x-large;
+      color: $form_title_color;
+    }
+  }
+  .author-form{
+    .author-input-label{
+      font-size: medium;
+    }
+    .author-input{
+      font-size: medium;
+    }
   }
 }
