@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import {Col, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
 import {Trash2, Edit} from 'react-feather';
+import DeleteAuthorModal from "./DeleteAuthorModal";
 type authorProps={
     author:IAuthor;
     number:number;
@@ -17,10 +18,23 @@ const showDeleteTip = (props: any) => (
     </Tooltip>
 );
 const Author: React.FC<authorProps> = (props) => {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleDeleteButton=()=>{
-        console.log(props.author.id);
+        setShow(true);
+        //props.handleDeleteAuthor(props.author.id);
+    }
+    const openDeleteAuthorModal = () => {
+        setShow(true);
+    }
+    const acceptDeleteAuthorAction = () => {
         props.handleDeleteAuthor(props.author.id);
+        setShow(false);
+    }
+    const refuseDeleteAuthorAction = () => {
+        setShow(false);
     }
 
     const handleEditButton=()=>{
@@ -52,6 +66,12 @@ const Author: React.FC<authorProps> = (props) => {
                         </OverlayTrigger>
                     </Col>
                 </Row>
+                <DeleteAuthorModal
+                    authorToDelete={props.author.name}
+                    isVisible={show}
+                    closeModal={refuseDeleteAuthorAction}
+                    acceptDeleteAction={acceptDeleteAuthorAction}
+                />
 
             </Row>
 
