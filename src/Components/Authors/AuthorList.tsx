@@ -1,17 +1,22 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
 import Author from "./Author";
-const AuthorList:React.FC = () => {
+type AuthorListProps={
+    Authors:IAuthor[];
+    handleDeleteAuthor:(id:string)=>void
+}
+const AuthorList:React.FC<AuthorListProps> = (props) => {
     return (
         <Row>
             <Col xs={12}>
-              <Author/>
-              <Author/>
-              <Author/>
+                {
+                    props.Authors.map((author,index)=>{
+                        return<Author author={author} number={index+1} key={author.id}
+                                      handleDeleteAuthor={props.handleDeleteAuthor}/>
+                    })
+                }
             </Col>
         </Row>
-
-    )
+    );
 }
-
 export default AuthorList;

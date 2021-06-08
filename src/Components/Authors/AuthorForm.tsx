@@ -1,13 +1,16 @@
 import React, {ChangeEvent, FC, useState} from "react";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {XCircle} from "react-feather";
+import { v4 as uuidv4 } from 'uuid'
 
 type AuthorFormProps={
     setAuthorFormVisible:(params:boolean)=>void;
+    handleAddAuthor:(author:IAuthor)=>void;
 }
 const AuthorForm: FC<AuthorFormProps> = (props) => {
     const [validated, setValidated] = useState(false);
-    //const [isFormClosed, setIsFormClosed] = useState<Boolean>(false)
+    const[AuthorName,setAuthorName]=useState<string>("")
+
     const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
         if (e.target.value === "") {
             e.preventDefault();
@@ -15,10 +18,18 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
         }
         e.preventDefault();
         setValidated(true);
+        props.handleAddAuthor({name:AuthorName , id:uuidv4()});
     };
+
     const handleCloseForm=()=>{
         props.setAuthorFormVisible(false);
     }
+
+    //Adding the new Author Name
+    const handleAuthorNameChange=(e:ChangeEvent<HTMLInputElement>)=>{
+        setAuthorName(e.target.value);
+    }
+
     return (
         <Col xs={12}>
             <Row style={{border: '1px solid red'}}>
@@ -41,6 +52,7 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
                                     required
                                     type="text"
                                     className="author-input"
+                                    onChange={handleAuthorNameChange}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 <Form.Control.Feedback type="invalid">Please Fill Empty Field!</Form.Control.Feedback>
