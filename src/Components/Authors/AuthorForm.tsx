@@ -12,13 +12,15 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
     const[AuthorName,setAuthorName]=useState<string>("")
 
     const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
-        if (e.target.value === "") {
-            e.preventDefault();
-            e.stopPropagation();
-        }
         e.preventDefault();
+        e.stopPropagation();
         setValidated(true);
+        if (AuthorName==="") {
+            return;
+        }
         props.handleAddAuthor({name:AuthorName , id:uuidv4()});
+        setAuthorName("");
+        props.setAuthorFormVisible(false);
     };
 
     const handleCloseForm=()=>{
