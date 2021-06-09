@@ -52,6 +52,7 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
                                     required
                                     type="text"
                                     className="author-input"
+                                    value={AuthorName}
                                     onChange={handleAuthorNameChange}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>

@@ -1,4 +1,4 @@
 type IAuthor={
-    name: string;
+    name: string|null;
     id:  string;
 }
