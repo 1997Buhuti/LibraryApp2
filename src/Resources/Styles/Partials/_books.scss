@@ -1,0 +1,13 @@
+@import "colors";
+.books-title {
+  font-size: xx-large;
+  border-bottom: 2.3px solid black;
+}
+
+.add-book{
+  cursor: pointer;
+  .plus-btn{
+    color: $plus_icon_color;
+    cursor: pointer;
+  }
+}

@@ -41,7 +41,7 @@ const Author: React.FC<authorProps> = (props) => {
     return (
         <Col xs={12} className=" author-info pt-2 pb-2">
             <Row>
-                <Col className="author-info-text">
+                <Col className="author-info-text px-0">
                     {props.number}.{props.author.name}
                 </Col>
                 <Row className=" icons mx-0">
