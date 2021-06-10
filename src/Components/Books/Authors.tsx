@@ -9,7 +9,6 @@ const Authors: FC = () => {
     const [Authors, setAuthors] = useState<IAuthor[]>([])
     const [AuthorToUpdate,setAuthorToUpdate]=useState<IAuthor|null>(null)
     const [AuthorIndexToUpdate,setAuthorIndexToUpdate]=useState<number|null>(null)
-    //const [displayNoAuthor,setdisplayNoAuthor]= useState(false);
 
     useEffect(() => {
         if (!AuthorToUpdate) {
@@ -17,9 +16,7 @@ const Authors: FC = () => {
         }
 
         setAuthorFormVisible(true);
-    }, [AuthorToUpdate])
-
-
+    }, [AuthorToUpdate]);
 
     const handleAddAuthorButtonClicked = () => {
         setAuthorToUpdate(null);
@@ -59,13 +56,13 @@ const Authors: FC = () => {
                 </Col>
             </Row>
             <Row>
-                <Col xs={12} className=" author-list-container px-0 pt-4" style={{border: '2px solid black'}}>
+                <Col xs={12} className=" author-list-container px-0 pt-4">
                     <AuthorList Authors={Authors} handleDeleteAuthor={handleDeleteAuthor}
                                 handleUpdateAuthorRequest={handleUpdateAuthorRequest}/>
                 </Col>
             </Row>
-            <Row className="mt-3 mb-4" style={{border: '2px solid black'}}>
-                <Col xs={12} className="add-author px-0" style={{border: '1px solid blue'}}>
+            <Row className="mt-3 mb-4">
+                <Col xs={12} className="add-author">
                     <Plus onClick={() => handleAddAuthorButtonClicked()} className="plus-btn"/>
                     <span onClick={() => handleAddAuthorButtonClicked()}>Add Author</span>
                 </Col>
