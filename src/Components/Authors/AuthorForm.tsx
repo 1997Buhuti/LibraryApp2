@@ -52,20 +52,19 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
 
     return (
         <Col xs={12}>
-            <Row style={{border: '1px solid red'}}>
-                <Col xs={10} className="author-form-title px-0 mt-3 pb-1" style={{border: '1px solid black'}}>
+            <Row>
+                <Col xs={10} className="author-form-title px-0 mt-3 pb-1">
                     <u> {!props.AuthorToUpdate ? 'Create' : 'Update'}  Author</u>
                 </Col>
                 <Col xs={2} className="close-button px-0 mt-3 pt-2 pb-1 text-right">
-                    <XCircle onClick={()=>handleCloseForm()} style={{cursor:"pointer"}}/>
+                    <XCircle onClick={()=>handleCloseForm()}/>
                 </Col>
             </Row>
 
             <Row xs={12}>
-                <Col className="px-0" xs={12} style={{border: '1px solid magenta'}}>
-                    <Form className="author-form" noValidate validated={validated} onSubmit={handleSubmit}
-                          style={{border: '1px solid magenta'}}>
-                        <Form.Row style={{border: '1px solid yellow'}}>
+                <Col className="px-0" xs={12}>
+                    <Form className="author-form" noValidate validated={validated} onSubmit={handleSubmit}>
+                        <Form.Row>
                             <Form.Group as={Col} controlId="validationCustom01">
                                 <Form.Label className="author-input-label">Author name</Form.Label>
                                 <Form.Control
