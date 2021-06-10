@@ -7,6 +7,7 @@ type authorProps = {
     author: IAuthor;
     number: number;
     handleDeleteAuthor: (id: string) => void
+    handleUpdateAuthorRequest:(author:IAuthor,index:number)=>void
 }
 const showEditTip = (props: any) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -35,7 +36,7 @@ const Author: React.FC<authorProps> = (props) => {
     }
 
     const handleEditButton = () => {
-        console.log('clicked')
+        props.handleUpdateAuthorRequest(props.author,props.number)
     }
     return (
         <Col xs={12} className=" author-info pt-2 pb-2">
