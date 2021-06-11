@@ -52,20 +52,20 @@ const Authors: FC = () => {
     }
 
     return (
-        <Container className="px-md-6 px-sm-5 px-xs-5">
+        <Container className="px-md-6 px-sm-5 px-xs-5" style={{border: '1px solid aqua '}}>
             <Row>
                 <Col xs={12} className="text-xs-left authors-title px-0 pb-1">
                     Authors
                 </Col>
             </Row>
             <Row>
-                <Col xs={12} className=" author-list-container px-0 pt-4">
+                <Col xs={12} className=" author-list-container px-0 pt-4" style={{border: '2px solid black'}}>
                     <AuthorList Authors={Authors} handleDeleteAuthor={handleDeleteAuthor}
                                 handleUpdateAuthorRequest={handleUpdateAuthorRequest}/>
                 </Col>
             </Row>
-            <Row className="mt-3 mb-4">
-                <Col xs={12} className="add-author px-0">
+            <Row className="mt-3 mb-4" style={{border: '2px solid black'}}>
+                <Col xs={12} className="add-author px-0" style={{border: '1px solid blue'}}>
                     <Plus onClick={() => handleAddAuthorButtonClicked()} className="plus-btn"/>
                     <span onClick={() => handleAddAuthorButtonClicked()}>Add Author</span>
                 </Col>
@@ -79,7 +79,7 @@ const Authors: FC = () => {
                                                       handleAuthorUpdate={handleAuthorUpdate}
                     />}
                 </Col>
-                <Col className="mt-3" xl={3}/>
+                <Col className="mt-3" xl={3} style={{border: '1px solid brown'}}/>
             </Row>
         </Container>
     );

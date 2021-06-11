@@ -56,3 +56,50 @@
     cursor: pointer;
   }
 }
+
+//Media Queries
+
+@media screen and (max-width: 768px) {
+  .books-title {
+    font-size: x-large;
+    border-bottom: 2px solid black;
+  }
+  .book-list-container{
+    .book-info{
+      .book-info-text{
+        font-size: large;
+      }
+      .icons{
+        .edit-button{
+          color: $edit_btn_color;
+          width: 20px;
+          height: 20px;
+        }
+        .delete-button{
+          color: $delete_btn_color;
+          width: 23px;
+          height: 23px;
+        }
+      }
+    }
+  }
+
+  .book-form-container{
+    .book-form-title{
+      border-bottom: 5px solid $form_title_color;
+      font-size: x-large;
+      color: $form_title_color;
+    }
+  }
+  .book-form-container{
+    .book-form-title{
+      .book-input-label{
+        font-size: medium;
+      }
+      .book-input{
+        font-size: medium;
+      }
+    }
+
+  }
+}
