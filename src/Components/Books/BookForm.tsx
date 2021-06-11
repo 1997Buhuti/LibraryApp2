@@ -18,10 +18,10 @@ const AuthorForm: FC= () => {
                 </Col>
             </Row>
 
-            <Row xs={12} style={{border: '2px solid black'}}>
-                <Col className="px-0" xs={12} style={{border: '2px solid pruple'}}>
+            <Row xs={12}>
+                <Col className="px-0" xs={12}>
                     <Form className="book-form">
-                        <Form.Row  style={{border: '2px solid pink'}}>
+                        <Form.Row>
                             <Form.Group as={Col} lg={{span:11,offset:1}} xs={12} controlId="validationCustom01">
                                 <Form.Label className="book-input-label">Title Of The Book</Form.Label>
                                 <Form.Control
@@ -34,7 +34,7 @@ const AuthorForm: FC= () => {
                                 <Form.Control.Feedback type="invalid">Please Fill Empty Field!</Form.Control.Feedback>
                             </Form.Group>
                         </Form.Row>
-                        <Form.Row style={{border: '2px solid pink'}}>
+                        <Form.Row>
                             <Form.Group as={Col} lg={{span:11,offset:1}} xs={12} controlId="validationCustom01">
                                 <Form.Label className="book-input-label">Price</Form.Label>
                                 <CurrencyFormat
@@ -55,7 +55,7 @@ const AuthorForm: FC= () => {
                                 <Form.Control.Feedback type="invalid">Please Fill Empty Field!</Form.Control.Feedback>
                             </Form.Group>
                         </Form.Row>
-                        <Form.Row style={{border: '2px solid pink'}}>
+                        <Form.Row >
                             <Form.Group as={Col} lg={{span:11,offset:1}} xs={12} controlId="validationCustom01">
                                 <Form.Label className="book-input-label">Author</Form.Label>
                                 <Select/>
@@ -63,7 +63,7 @@ const AuthorForm: FC= () => {
                                 <Form.Control.Feedback type="invalid">Please Fill Empty Field!</Form.Control.Feedback>
                             </Form.Group>
                         </Form.Row>
-                        <Form.Row className="float-right pt-4 "  style={{border: '2px solid pink'}}>
+                        <Form.Row className="float-right pt-4 ">
                             <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-0 " type="submit">Create</Button>
                         </Form.Row>
                     </Form>
