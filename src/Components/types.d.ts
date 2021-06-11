@@ -4,7 +4,8 @@ type IAuthor={
 }
 
 type IBook={
-    title:string;
+    title:string|null;
     price:string;
     author:string;
+    id:string
 }

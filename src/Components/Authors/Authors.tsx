@@ -4,7 +4,10 @@ import AuthorList from "./AuthorList";
 import {Plus} from "react-feather";
 import AuthorForm from "./AuthorForm";
 
-const Authors: FC = () => {
+type AuthorsProps = {
+    returnAllAuthors: (authors: IAuthor[]) => void
+};
+const Authors: FC<AuthorsProps> = (props) => {
     const [AuthorFormVisible, setAuthorFormVisible] = useState<Boolean>(false);
     const [Authors, setAuthors] = useState<IAuthor[]>([])
     const [AuthorToUpdate,setAuthorToUpdate]=useState<IAuthor|null>(null)
