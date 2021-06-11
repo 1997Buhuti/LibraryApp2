@@ -4,6 +4,51 @@
   border-bottom: 2.3px solid black;
 }
 
+.book-list-container{
+  .book-info{
+    .book-info-text{
+      font-size: x-large;
+    }
+    .icons{
+      .edit-button{
+        color: $edit_btn_color;
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+      }
+      .delete-button{
+        color: $delete_btn_color;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+      }
+    }
+
+    &:hover{
+      background-color: $list_hover_color;
+    }
+  }
+}
+.book-form-container{
+  .book-form-title{
+    font-size: x-large;
+    color: $form_title_color;
+  }
+  .book-form{
+      .book-input-label{
+        font-size: small;
+      }
+      .book-input{
+        box-shadow: none;
+        border-radius: 0;
+        border-color: #959595;
+      }
+  }
+  .submit-author-btn{
+    background-color: $form_btn_color;
+  }
+}
+
 .add-book{
   cursor: pointer;
   .plus-btn{

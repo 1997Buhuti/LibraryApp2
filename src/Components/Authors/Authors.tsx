@@ -71,7 +71,7 @@ const Authors: FC = () => {
                 </Col>
             </Row>
             <Row>
-                <Col className="author-form-container" xl={9} xs={12}>
+                <Col className="author-form-container" xl={9} xs={12} style={{border: '1px solid blue'}}>
                     {AuthorFormVisible && <AuthorForm setAuthorFormVisible={setAuthorFormVisible}
                                                       handleAddAuthor={handleAddAuthor}
                                                       AuthorToUpdate={AuthorToUpdate}

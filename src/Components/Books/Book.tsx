@@ -1,14 +1,7 @@
 import React, {useState} from "react";
 import {Col, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
 import {Trash2, Edit} from 'react-feather';
-import DeleteAuthorModal from "./DeleteAuthorModal";
 
-type authorProps = {
-    author: IAuthor;
-    number: number;
-    handleDeleteAuthor: (id: string) => void
-    handleUpdateAuthorRequest:(author:IAuthor,index:number)=>void
-}
 const showEditTip = (props: any) => (
     <Tooltip id="button-tooltip" {...props}>
         Edit author name
@@ -19,33 +12,24 @@ const showDeleteTip = (props: any) => (
         Delete author name
     </Tooltip>
 );
-const Author: React.FC<authorProps> = (props) => {
-    const [show, setShow] = useState(false);
+const Author: React.FC= () => {
 
     //handler for the delete button
     const handleDeleteButton = () => {
-        setShow(true);
-    }
-
-    const acceptDeleteAuthorAction = () => {
-        props.handleDeleteAuthor(props.author.id);
-        setShow(false);
-    }
-    const refuseDeleteAuthorAction = () => {
-        setShow(false);
+        console.log('hello')
     }
 
     const handleEditButton = () => {
-        props.handleUpdateAuthorRequest(props.author,props.number)
+        console.log('hello')
     }
     return (
-        <Col xs={12} className=" author-info pt-2 pb-2">
-            <Row style={{border: '1px solid black '}}>
-                <Col className="author-info-text px-0" style={{border: '1px solid brown'}}>
-                    {props.number}.{props.author.name}
+        <Col xs={12} className=" book-info pt-2 pb-2">
+            <Row style={{border: '1px solid brown'}}>
+                <Col className="book-info-text px-0" style={{border: '1px solid black '}}>
+                    book 1
                 </Col>
                 <Row className=" icons mx-0" style={{border: '1px solid aqua'}}>
-                    <Col className="pr-1"  style={{border: '1px solid purple'}} >
+                    <Col className="pr-1" style={{border: '1px solid purple'}}>
                         <OverlayTrigger
                             placement="bottom"
                             delay={{show: 250, hide: 400}}
@@ -64,13 +48,6 @@ const Author: React.FC<authorProps> = (props) => {
                         </OverlayTrigger>
                     </Col>
                 </Row>
-                <DeleteAuthorModal
-                    authorToDelete={props.author.name?props.author.name:""}
-                    isVisible={show}
-                    closeModal={refuseDeleteAuthorAction}
-                    acceptDeleteAction={acceptDeleteAuthorAction}
-                />
-
             </Row>
 
         </Col>
