@@ -1,6 +1,8 @@
 import React, {FC} from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import {Plus} from "react-feather";
+import BookList from "./BookList";
+import BookForm from "./BookForm";
 
 
 const Books: FC = () => {
@@ -13,7 +15,7 @@ const Books: FC = () => {
             </Row>
             <Row>
                 <Col xs={12} className=" book-list-container px-0 pt-4" style={{border: '2px solid black'}}>
-                    <h2>BookList</h2>
+                    <BookList/>
                 </Col>
             </Row>
             <Row className="mt-3 mb-4" style={{border: '2px solid black'}}>
@@ -24,7 +26,7 @@ const Books: FC = () => {
             </Row>
             <Row>
                 <Col className="book-form-container" xl={9} xs={12} style={{border: '1px solid blue'}}>
-                    <h2>BookForm</h2>
+                    <BookForm/>
                 </Col>
                 <Col className="mt-3" xl={3} style={{border: '1px solid brown'}}/>
             </Row>

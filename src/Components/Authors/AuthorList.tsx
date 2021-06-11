@@ -20,8 +20,8 @@ const AuthorList:React.FC<AuthorListProps> = (props) => {
     }, [Authors])
 
     return (
-        <Row className="mx-0">
-            <Col className="px-0" xs={12}>
+        <Row className="mx-0" style={{border: '1px solid aqua '}}>
+            <Col className="px-0" xs={12} style={{border: '1px solid blue '}}>
                 <i>{displayNoAuthor?'No authors listed here':''}</i>
                 {
                     props.Authors.map((author,index)=>{
