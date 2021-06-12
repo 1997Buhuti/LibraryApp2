@@ -43,6 +43,11 @@
         border-radius: 0;
         border-color: #959595;
       }
+    .author-select{
+      box-shadow: none;
+      border-radius: 0;
+      border-color: #959595;
+    }
   }
   .submit-author-btn{
     background-color: $form_btn_color;
@@ -86,7 +91,6 @@
 
   .book-form-container{
     .book-form-title{
-      border-bottom: 5px solid $form_title_color;
       font-size: x-large;
       color: $form_title_color;
     }

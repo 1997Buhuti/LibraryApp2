@@ -2,6 +2,10 @@ import React, {useState} from "react";
 import {Col, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
 import {Trash2, Edit} from 'react-feather';
 
+type bookProps = {
+    book: IBook;
+    index: number;
+}
 const showEditTip = (props: any) => (
     <Tooltip id="button-tooltip" {...props}>
         Edit author name
@@ -12,7 +16,7 @@ const showDeleteTip = (props: any) => (
         Delete author name
     </Tooltip>
 );
-const Author: React.FC= () => {
+const Author: React.FC<bookProps>= (props) => {
 
     //handler for the delete button
     const handleDeleteButton = () => {
@@ -26,7 +30,7 @@ const Author: React.FC= () => {
         <Col xs={12} className=" book-info pt-2 pb-2">
             <Row style={{border: '1px solid brown'}}>
                 <Col className="book-info-text px-0" style={{border: '1px solid black '}}>
-                    book 1
+                    {props.index+1}{props.book.title}
                 </Col>
                 <Row className=" icons mx-0" style={{border: '1px solid aqua'}}>
                     <Col className="pr-1" style={{border: '1px solid purple'}}>
