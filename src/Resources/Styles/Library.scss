@@ -1,0 +1,20 @@
+.Library{
+  .Welcome-Screen{
+    img{
+      height: auto;
+      width: 100%;
+    }
+    .Welcome-Screen-Title{
+      text-align: center;
+    }
+    .photo-credits{
+      text-align: right;
+
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .photo-credits{
+    font-size: small;
+  }
+}

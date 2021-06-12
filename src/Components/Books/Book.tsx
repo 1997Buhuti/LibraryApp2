@@ -1,0 +1,61 @@
+import React, {useState} from "react";
+import {Col, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
+import {Trash2, Edit} from 'react-feather';
+
+type bookProps = {
+    book: IBook;
+    index: number;
+}
+const showEditTip = (props: any) => (
+    <Tooltip id="button-tooltip" {...props}>
+        Edit author name
+    </Tooltip>
+);
+const showDeleteTip = (props: any) => (
+    <Tooltip id="button-tooltip" {...props}>
+        Delete author name
+    </Tooltip>
+);
+const Author: React.FC<bookProps>= (props) => {
+
+    //handler for the delete button
+    const handleDeleteButton = () => {
+        console.log('hello')
+    }
+
+    const handleEditButton = () => {
+        console.log('hello')
+    }
+    return (
+        <Col xs={12} className=" book-info pt-2 pb-2">
+            <Row style={{border: '1px solid brown'}}>
+                <Col className="book-info-text px-0" style={{border: '1px solid black '}}>
+                    {props.index+1}{props.book.title}
+                </Col>
+                <Row className=" icons mx-0" style={{border: '1px solid aqua'}}>
+                    <Col className="pr-1" style={{border: '1px solid purple'}}>
+                        <OverlayTrigger
+                            placement="bottom"
+                            delay={{show: 250, hide: 400}}
+                            overlay={showEditTip}
+                        >
+                            <Edit className="edit-button" onClick={() => handleEditButton()}/>
+                        </OverlayTrigger>
+                    </Col>
+                    <Col style={{border: '1px solid purple'}}>
+                        <OverlayTrigger
+                            placement="bottom"
+                            delay={{show: 250, hide: 400}}
+                            overlay={showDeleteTip}
+                        >
+                            <Trash2 className=" delete-button pr-1" onClick={() => handleDeleteButton()}/>
+                        </OverlayTrigger>
+                    </Col>
+                </Row>
+            </Row>
+
+        </Col>
+    )
+}
+
+export default Author;

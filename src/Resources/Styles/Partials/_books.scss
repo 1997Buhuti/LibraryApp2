@@ -1,0 +1,109 @@
+@import "colors";
+.books-title {
+  font-size: xx-large;
+  border-bottom: 2.3px solid black;
+}
+
+.book-list-container{
+  .book-info{
+    .book-info-text{
+      font-size: x-large;
+    }
+    .icons{
+      .edit-button{
+        color: $edit_btn_color;
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+      }
+      .delete-button{
+        color: $delete_btn_color;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+      }
+    }
+
+    &:hover{
+      background-color: $list_hover_color;
+    }
+  }
+}
+.book-form-container{
+  .book-form-title{
+    font-size: x-large;
+    color: $form_title_color;
+  }
+  .book-form{
+      .book-input-label{
+        font-size: small;
+      }
+      .book-input{
+        box-shadow: none;
+        border-radius: 0;
+        border-color: #959595;
+      }
+    .author-select{
+      box-shadow: none;
+      border-radius: 0;
+      border-color: #959595;
+    }
+  }
+  .submit-author-btn{
+    background-color: $form_btn_color;
+  }
+}
+
+.add-book{
+  cursor: pointer;
+  .plus-btn{
+    color: $plus_icon_color;
+    cursor: pointer;
+  }
+}
+
+//Media Queries
+
+@media screen and (max-width: 768px) {
+  .books-title {
+    font-size: x-large;
+    border-bottom: 2px solid black;
+  }
+  .book-list-container{
+    .book-info{
+      .book-info-text{
+        font-size: large;
+      }
+      .icons{
+        .edit-button{
+          color: $edit_btn_color;
+          width: 20px;
+          height: 20px;
+        }
+        .delete-button{
+          color: $delete_btn_color;
+          width: 23px;
+          height: 23px;
+        }
+      }
+    }
+  }
+
+  .book-form-container{
+    .book-form-title{
+      font-size: x-large;
+      color: $form_title_color;
+    }
+  }
+  .book-form-container{
+    .book-form-title{
+      .book-input-label{
+        font-size: medium;
+      }
+      .book-input{
+        font-size: medium;
+      }
+    }
+
+  }
+}
