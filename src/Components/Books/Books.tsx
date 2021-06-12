@@ -3,6 +3,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import {Plus} from "react-feather";
 import BookList from "./BookList";
 import BookForm from "./BookForm";
+import {v4 as uuidv4} from "uuid";
 
 type BooksProps = {
     authorsAvailable: () => IAuthor[]
@@ -18,6 +19,8 @@ const Books: FC<BooksProps> = (props) => {
         newBookList.push(newBook);
         setBooks(newBookList);
     }
+    console.log(Books);
+    const authors=props.authorsAvailable();
     return (
         <Container className="px-md-6 px-sm-5 px-xs-5" style={{border: '1px solid aqua '}}>
             <Row>
@@ -27,7 +30,7 @@ const Books: FC<BooksProps> = (props) => {
             </Row>
             <Row>
                 <Col xs={12} className=" book-list-container px-0 pt-4" style={{border: '2px solid black'}}>
-                    <BookList/>
+                    <BookList books={Books}/>
                 </Col>
             </Row>
             <Row className="mt-3 mb-4" style={{border: '2px solid black'}}>
@@ -40,6 +43,7 @@ const Books: FC<BooksProps> = (props) => {
                 <Col className="book-form-container" xl={9} xs={12} style={{border: '1px solid blue'}}>
                     {BookFormVisible && <BookForm setBookFormVisible={setBookFormVisible}
                                                   handleAddBook={handleAddBook}
+                                                  authorsAvailable={authors}
                     />}
                 </Col>
                 <Col className="mt-3" xl={3} style={{border: '1px solid brown'}}/>

@@ -12,7 +12,6 @@ const Authors: FC<AuthorsProps> = (props) => {
     const [Authors, setAuthors] = useState<IAuthor[]>([])
     const [AuthorToUpdate,setAuthorToUpdate]=useState<IAuthor|null>(null)
     const [AuthorIndexToUpdate,setAuthorIndexToUpdate]=useState<number|null>(null)
-    //const [displayNoAuthor,setdisplayNoAuthor]= useState(false);
 
     useEffect(() => {
         if (!AuthorToUpdate) {
@@ -23,7 +22,6 @@ const Authors: FC<AuthorsProps> = (props) => {
     }, [AuthorToUpdate])
 
 
-
     const handleAddAuthorButtonClicked = () => {
         setAuthorToUpdate(null);
         setAuthorFormVisible(true);
@@ -32,6 +30,7 @@ const Authors: FC<AuthorsProps> = (props) => {
         const newAuthorList:IAuthor[]=Authors.slice();
         newAuthorList.push(newAuthor);
         setAuthors(newAuthorList);
+        props.returnAllAuthors(Authors);
     }
     const handleDeleteAuthor=(id:string)=>{
         setAuthors(Authors.filter(author=>author.id!==id))

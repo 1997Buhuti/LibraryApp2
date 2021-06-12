@@ -1,24 +1,58 @@
-import React, {ChangeEvent, FC, useState} from "react";
+import React, {ChangeEvent, FC, useEffect, useState} from "react";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {XCircle} from "react-feather";
 // @ts-ignore
 import * as CurrencyFormat from 'react-currency-format';
-import Select from "react-select/base";
+import Select from "react-select";
 import {v4 as uuidv4} from "uuid";
+import {ValueType} from "react-select";
 
 type BookFormProps={
     setBookFormVisible:(params:boolean)=>void;
-    handleAddBook :(Book:IBook)=>void
+    handleAddBook :(Book:IBook)=>void;
+    authorsAvailable: IAuthor[]
 }
 const BookForm: FC<BookFormProps>= (props) => {
+    const authors=props.authorsAvailable;
 
     const [validated, setValidated] = useState(false);
     const[BookTitle,setBookTitle]=useState<string|null>("");
     // Book Price
     const [price, setPrice] = useState<string>("");
     // Book Author
-    const [bookAuthor, setBookAuthor] = useState<string>("Author 1");
-    //const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption, any> | null>(null);
+    const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption, any> | null>(null);
+    //authorOptions
+    const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
+
+    // Change book Title
+    const handBookTitleChange=(e:ChangeEvent<HTMLInputElement>)=>{
+        setBookTitle(e.target.value);
+    }
+    // Change book Author
+    const handleBookPriceChange=(e:ChangeEvent<HTMLInputElement>)=>{
+        setPrice(e.target.value);
+    }
+    // Change book Author
+    const handleOnBookAuthorChange = (selectedOption: ValueType<ReactSelectOption, any>) => {
+        setSelectedAuthor(selectedOption);
+    };
+    const [validateSelect,setValidateSelect]=useState<boolean>(false);
+
+    useEffect(() => {
+        const options: ReactSelectOption[] = authors ? authors.map((author: IAuthor, index: number) => {
+            // @ts-ignore
+            const authorOption: ReactSelectOption = {value: index + '', label: author.name};
+            return authorOption;
+        }) : [];
+
+        setAuthorOptions(options);
+    }, [authors]);
+    useEffect(() => {
+        if(selectedAuthor!==null){
+            setValidateSelect(false);
+        }
+    }, [selectedAuthor]);
+
 
     const handleCloseButton=()=>{
         props.setBookFormVisible(false);
@@ -27,16 +61,22 @@ const BookForm: FC<BookFormProps>= (props) => {
         e.preventDefault();
         e.stopPropagation();
         setValidated(true);
-        if ((BookTitle===""||null)||(price===""||null)||(bookAuthor===""||null)){
+
+        if(selectedAuthor===null){
+            setValidateSelect(true);
+        }
+
+        if ((BookTitle==="")||(price==="")){
             return;
         }
-        props.handleAddBook({title:BookTitle, price:price,author:bookAuthor,id:uuidv4()});
-        setBookTitle(null);
-        setPrice("");
-        setBookAuthor("");
 
+        props.handleAddBook({title:BookTitle, price:price,id:uuidv4()});
+        setBookTitle("");
+        setPrice("");
+        setSelectedAuthor(null);
         props.setBookFormVisible(false);
     };
+
     return (
         <Col xs={12} >
             <Row>
@@ -55,10 +95,11 @@ const BookForm: FC<BookFormProps>= (props) => {
                             <Form.Group as={Col} lg={{span:11,offset:1}} xs={12} controlId="validationCustom01">
                                 <Form.Label className="book-input-label">Title Of The Book</Form.Label>
                                 <Form.Control
-                                    //required
+                                    required
                                     type="text"
                                     size="sm"
                                     className="book-input"
+                                    onChange={handBookTitleChange}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 <Form.Control.Feedback type="invalid">Please Fill Empty Field!</Form.Control.Feedback>
@@ -74,11 +115,7 @@ const BookForm: FC<BookFormProps>= (props) => {
                                     inputMode="numeric"
                                     thousandSeparator={true}
                                     prefix={'$'}
-                                    onValueChange={
-                                        (values: { formattedValue: any; value: any; }) => {
-                                            const {formattedValue, value} = values;
-                                        }
-                                    }
+                                    onChange={handleBookPriceChange}
                                     required
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -88,7 +125,23 @@ const BookForm: FC<BookFormProps>= (props) => {
                         <Form.Row >
                             <Form.Group as={Col} lg={{span:11,offset:1}} xs={12} controlId="validationCustom01">
                                 <Form.Label className="book-input-label">Author</Form.Label>
-                                <Select/>
+                                <Select
+                                    className="author-select"
+                                    value={selectedAuthor}
+                                    onChange={handleOnBookAuthorChange}
+                                    options={authorOptions}
+                                    theme={theme => ({
+                                        ...theme,
+                                        borderRadius: 0,
+                                        colors: {
+                                            ...theme.colors,
+                                            primary: '',
+                                            primary25: '',
+
+                                        },
+                                    })}
+                                />
+                                {validateSelect && <span style={{color:'#dc3545',fontSize:'small'}}>Please Fill Empty Field!</span>}
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 <Form.Control.Feedback type="invalid">Please Fill Empty Field!</Form.Control.Feedback>
                             </Form.Group>
