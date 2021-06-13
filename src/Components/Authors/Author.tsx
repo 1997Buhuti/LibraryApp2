@@ -40,12 +40,12 @@ const Author: React.FC<authorProps> = (props) => {
     }
     return (
         <Col xs={12} className=" author-info pt-2 pb-2">
-            <Row style={{border: '1px solid black '}}>
-                <Col className="author-info-text px-0" style={{border: '1px solid brown'}}>
+            <Row>
+                <Col className="author-info-text px-0">
                     {props.number}.{props.author.name}
                 </Col>
-                <Row className=" icons mx-0" style={{border: '1px solid aqua'}}>
-                    <Col className="pr-1"  style={{border: '1px solid purple'}} >
+                <Row className=" icons mx-0">
+                    <Col className="pr-1">
                         <OverlayTrigger
                             placement="bottom"
                             delay={{show: 250, hide: 400}}
@@ -54,7 +54,7 @@ const Author: React.FC<authorProps> = (props) => {
                             <Edit className="edit-button" onClick={() => handleEditButton()}/>
                         </OverlayTrigger>
                     </Col>
-                    <Col style={{border: '1px solid purple'}}>
+                    <Col>
                         <OverlayTrigger
                             placement="bottom"
                             delay={{show: 250, hide: 400}}

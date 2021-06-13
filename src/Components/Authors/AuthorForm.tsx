@@ -61,11 +61,11 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
                 </Col>
             </Row>
 
-            <Row xs={12} style={{border: '2px solid black'}}>
-                <Col className="px-0" xs={12} style={{border: '2px solid pruple'}}>
+            <Row xs={12}>
+                <Col className="px-0" xs={12}>
                     <Form className="author-form" noValidate validated={validated} onSubmit={handleSubmit}>
-                        <Form.Row className="author-name-group" style={{border: '2px solid pink'}}>
-                            <Form.Group as={Col} lg={{span:11,offset:1}} xs={12} controlId="validationCustom01" style={{border: '2px solid red'}}>
+                        <Form.Row className="author-name-group">
+                            <Form.Group as={Col} lg={{span:11,offset:1}} xs={12} controlId="validationCustom01">
                                 <Form.Label className="author-input-label">Name Of The Author</Form.Label>
                                 <Form.Control
                                     required
@@ -79,8 +79,9 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
                                 <Form.Control.Feedback type="invalid">Please Fill Empty Field!</Form.Control.Feedback>
                             </Form.Group>
                         </Form.Row>
-                        <Form.Row className="float-right pt-4 "  style={{border: '2px solid pink'}}>
-                            <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-0 " type="submit">Create</Button>
+                        <Form.Row className="float-right pt-4">
+                            <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-0 " type="submit">
+                                {props.AuthorToUpdate?'Update':'Create'}</Button>
                         </Form.Row>
                     </Form>
                 </Col>
