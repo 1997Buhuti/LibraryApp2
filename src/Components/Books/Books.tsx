@@ -3,7 +3,6 @@ import {Col, Container, Row} from "react-bootstrap";
 import {Plus} from "react-feather";
 import BookList from "./BookList";
 import BookForm from "./BookForm";
-import {v4 as uuidv4} from "uuid";
 
 type BooksProps = {
     authorsAvailable: () => IAuthor[]
@@ -19,7 +18,9 @@ const Books: FC<BooksProps> = (props) => {
         newBookList.push(newBook);
         setBooks(newBookList);
     }
-    console.log(Books);
+    const handleDeleteBook=(id:string)=>{
+        setBooks(Books.filter(book=>book.id!==id));
+    }
     const authors=props.authorsAvailable();
     return (
         <Container className="px-md-6 px-sm-5 px-xs-5" style={{border: '1px solid aqua '}}>
@@ -30,7 +31,7 @@ const Books: FC<BooksProps> = (props) => {
             </Row>
             <Row>
                 <Col xs={12} className=" book-list-container px-0 pt-4" style={{border: '2px solid black'}}>
-                    <BookList books={Books}/>
+                    <BookList books={Books} handleDeleteBook={handleDeleteBook}/>
                 </Col>
             </Row>
             <Row className="mt-3 mb-4" style={{border: '2px solid black'}}>
