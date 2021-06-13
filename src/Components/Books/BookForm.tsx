@@ -10,7 +10,10 @@ import {ValueType} from "react-select";
 type BookFormProps={
     setBookFormVisible:(params:boolean)=>void;
     handleAddBook :(Book:IBook)=>void;
-    authorsAvailable: IAuthor[]
+    authorsAvailable: IAuthor[];
+    BookToUpdate:IBook|null;
+    BookIndexToUpdate:number|null;
+    handleBookUpdate:(updatedBook:IBook,index:number|null)=>void;
 }
 const BookForm: FC<BookFormProps>= (props) => {
     const authors=props.authorsAvailable;
@@ -20,9 +23,18 @@ const BookForm: FC<BookFormProps>= (props) => {
     // Book Price
     const [price, setPrice] = useState<string>("");
     // Book Author
-    const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption, any> | null>(null);
+    const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption,any> | null>(null);
     //authorOptions
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
+
+    useEffect(()=>{
+        if(!props.BookToUpdate){
+            setBookTitle("");
+            return;
+        }
+        setBookTitle(props.BookToUpdate.title);
+        setPrice(props.BookToUpdate.price);
+    },[props.BookToUpdate])
 
     // Change book Title
     const handBookTitleChange=(e:ChangeEvent<HTMLInputElement>)=>{
@@ -47,6 +59,7 @@ const BookForm: FC<BookFormProps>= (props) => {
 
         setAuthorOptions(options);
     }, [authors]);
+
     useEffect(() => {
         if(selectedAuthor!==null){
             setValidateSelect(false);
@@ -66,11 +79,19 @@ const BookForm: FC<BookFormProps>= (props) => {
             setValidateSelect(true);
         }
 
-        if ((BookTitle==="")||(price==="")){
+        if ((BookTitle==="")||(price==="")||(selectedAuthor===null)){
+            return;
+        }
+        if(props.BookToUpdate){
+            props.handleBookUpdate({...props.BookToUpdate, title:BookTitle},
+                props.BookIndexToUpdate);
+            setBookTitle(null);
+            setPrice("");
+            setSelectedAuthor(null);
             return;
         }
 
-        props.handleAddBook({title:BookTitle, price:price,id:uuidv4()});
+        props.handleAddBook({title:BookTitle, price:price,author:selectedAuthor.toString(),id:uuidv4()});
         setBookTitle("");
         setPrice("");
         setSelectedAuthor(null);
@@ -81,7 +102,7 @@ const BookForm: FC<BookFormProps>= (props) => {
         <Col xs={12} >
             <Row>
                 <Col xs={10} className="book-form-title px-0 mt-3 pb-1">
-                    <u> Create Book</u>
+                    <u>{!props.BookToUpdate ? 'Create' : 'Update'} Create Book</u>
                 </Col>
                 <Col xs={2} className="close-button px-0 mt-3 pt-2 pb-1 text-right">
                     <XCircle onClick={()=>handleCloseButton()}/>
@@ -99,6 +120,7 @@ const BookForm: FC<BookFormProps>= (props) => {
                                     type="text"
                                     size="sm"
                                     className="book-input"
+                                    value={BookTitle? BookTitle:''}
                                     onChange={handBookTitleChange}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -110,6 +132,7 @@ const BookForm: FC<BookFormProps>= (props) => {
                                 <Form.Label className="book-input-label">Price</Form.Label>
                                 <CurrencyFormat
                                     style={{width: '100%'}}
+                                    value={price? price:''}
                                     className="book-price-input"
                                     size="sm"
                                     inputMode="numeric"
@@ -147,7 +170,8 @@ const BookForm: FC<BookFormProps>= (props) => {
                             </Form.Group>
                         </Form.Row>
                         <Form.Row className="float-right pt-4 ">
-                            <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-0 " type="submit">Create</Button>
+                            <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-0 " type="submit">
+                                {props.BookToUpdate?'Update':'Create'}</Button>
                         </Form.Row>
                     </Form>
                 </Col>

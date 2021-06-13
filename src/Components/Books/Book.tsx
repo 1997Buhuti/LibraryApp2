@@ -7,6 +7,7 @@ type bookProps = {
     book: IBook;
     index: number;
     handleDeleteBook:(id:string)=>void
+    handleUpdateBook:(book:IBook,index:number)=>void
 }
 const showEditTip = (props: any) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -34,16 +35,16 @@ const Author: React.FC<bookProps>= (props) => {
         setShow(false);
     }
     const handleEditButton = () => {
-        console.log('hello')
+        props.handleUpdateBook(props.book, props.index)
     }
     return (
         <Col xs={12} className=" book-info pt-2 pb-2">
-            <Row style={{border: '1px solid brown'}}>
-                <Col className="book-info-text px-0" style={{border: '1px solid black '}}>
-                    {props.index+1}{props.book.title}
+            <Row>
+                <Col className="book-info-text px-0">
+                    {props.index+1}.{props.book.title}
                 </Col>
-                <Row className=" icons mx-0" style={{border: '1px solid aqua'}}>
-                    <Col className="pr-1" style={{border: '1px solid purple'}}>
+                <Row className=" icons mx-0">
+                    <Col className="pr-1">
                         <OverlayTrigger
                             placement="bottom"
                             delay={{show: 250, hide: 400}}
@@ -52,7 +53,7 @@ const Author: React.FC<bookProps>= (props) => {
                             <Edit className="edit-button" onClick={() => handleEditButton()}/>
                         </OverlayTrigger>
                     </Col>
-                    <Col style={{border: '1px solid purple'}}>
+                    <Col>
                         <OverlayTrigger
                             placement="bottom"
                             delay={{show: 250, hide: 400}}

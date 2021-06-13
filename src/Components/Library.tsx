@@ -21,7 +21,7 @@ const Library=()=> {
                     <WelcomeScreen/>
                 </Col>
             </Row>
-            <Row className=" mx-0 mb-5 pb-5" style={{border:'1px solid black '}}>
+            <Row className=" mx-0 mb-5 pb-5">
                 <Col  md={{order: 'first', span: 6}} xs={{order: 'last', span: 12}}>
                     <Books authorsAvailable={sendAllAuthors}/>
                 </Col>
