@@ -30,8 +30,8 @@ const Library=()=> {
                     <Authors returnAllAuthors={getAllAuthors}/>
                 </Col>
             </Row>
-            <Row>
-                <Col xs={12}>
+            <Row className=" mx-0">
+                <Col xs={12} className="px-0">
                     <Footer/>
                 </Col>
             </Row>
