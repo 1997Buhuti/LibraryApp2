@@ -30,16 +30,16 @@ const Books: FC<BooksProps> = (props) => {
         newBookList.push(newBook);
         setBooks(newBookList);
     }
-    const handleUpdateBookRequest= (book:IBook,index:number)=>{
+    const handleUpdateBookRequest = (book: IBook, index: number) => {
         setBookToUpdate(book);
         setBookIndexToUpdateToUpdate(index);
     }
-    const handleBookUpdate=(updatedBook:IBook,index:number|null)=>{
-        if(!index){
+    const handleBookUpdate = (updatedBook: IBook, index: number | null) => {
+        if (!index) {
             return;
         }
-        const newBookList:IBook[]=Books.slice();
-        newBookList.splice(index-1,1,updatedBook);
+        const newBookList: IBook[] = Books.slice();
+        newBookList.splice(index - 1, 1, updatedBook);
         setBooks(newBookList);
         setBookToUpdate(null);
         setBookIndexToUpdateToUpdate(null);

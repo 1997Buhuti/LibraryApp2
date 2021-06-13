@@ -10,8 +10,8 @@ type AuthorsProps = {
 const Authors: FC<AuthorsProps> = (props) => {
     const [AuthorFormVisible, setAuthorFormVisible] = useState<Boolean>(false);
     const [Authors, setAuthors] = useState<IAuthor[]>([])
-    const [AuthorToUpdate,setAuthorToUpdate]=useState<IAuthor|null>(null)
-    const [AuthorIndexToUpdate,setAuthorIndexToUpdate]=useState<number|null>(null)
+    const [AuthorToUpdate, setAuthorToUpdate] = useState<IAuthor | null>(null)
+    const [AuthorIndexToUpdate, setAuthorIndexToUpdate] = useState<number | null>(null)
 
     useEffect(() => {
         if (!AuthorToUpdate) {
@@ -26,27 +26,27 @@ const Authors: FC<AuthorsProps> = (props) => {
         setAuthorToUpdate(null);
         setAuthorFormVisible(true);
     }
-    const handleAddAuthor = (newAuthor:IAuthor) => {
-        const newAuthorList:IAuthor[]=Authors.slice();
+    const handleAddAuthor = (newAuthor: IAuthor) => {
+        const newAuthorList: IAuthor[] = Authors.slice();
         newAuthorList.push(newAuthor);
         setAuthors(newAuthorList);
         props.returnAllAuthors(newAuthorList);
     }
-    const handleDeleteAuthor=(id:string)=>{
-        setAuthors(Authors.filter(author=>author.id!==id))
+    const handleDeleteAuthor = (id: string) => {
+        setAuthors(Authors.filter(author => author.id !== id))
     }
 
-    const handleUpdateAuthorRequest= (author:IAuthor,index:number)=>{
+    const handleUpdateAuthorRequest = (author: IAuthor, index: number) => {
         setAuthorToUpdate(author);
         setAuthorIndexToUpdate(index);
     }
 
-    const handleAuthorUpdate=(updatedAuthor:IAuthor,index:number|null)=>{
-        if(!index){
+    const handleAuthorUpdate = (updatedAuthor: IAuthor, index: number | null) => {
+        if (!index) {
             return;
         }
-        const newAuthorList:IAuthor[]=Authors.slice();
-        newAuthorList.splice(index-1,1,updatedAuthor);
+        const newAuthorList: IAuthor[] = Authors.slice();
+        newAuthorList.splice(index - 1, 1, updatedAuthor);
         setAuthors(newAuthorList)
         setAuthorToUpdate(null);
         setAuthorIndexToUpdate(null);

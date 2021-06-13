@@ -6,8 +6,8 @@ import DeleteBookModal from "./DeleteBookModal";
 type bookProps = {
     book: IBook;
     index: number;
-    handleDeleteBook:(id:string)=>void
-    handleUpdateBook:(book:IBook,index:number)=>void
+    handleDeleteBook: (id: string) => void
+    handleUpdateBook: (book: IBook, index: number) => void
 }
 const showEditTip = (props: any) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -19,7 +19,7 @@ const showDeleteTip = (props: any) => (
         Delete author name
     </Tooltip>
 );
-const Author: React.FC<bookProps>= (props) => {
+const Author: React.FC<bookProps> = (props) => {
 
     const [show, setShow] = useState(false);
     //handler for the delete button
@@ -41,7 +41,7 @@ const Author: React.FC<bookProps>= (props) => {
         <Col xs={12} className=" book-info pt-2 pb-2">
             <Row>
                 <Col className="book-info-text px-0">
-                    {props.index+1}.{props.book.title}
+                    {props.index + 1}.{props.book.title}
                 </Col>
                 <Row className=" icons mx-0">
                     <Col className="pr-1">
@@ -64,7 +64,7 @@ const Author: React.FC<bookProps>= (props) => {
                     </Col>
                 </Row>
                 <DeleteBookModal
-                    bookToDelete={props.book.title?props.book.title:""}
+                    bookToDelete={props.book.title ? props.book.title : ""}
                     isVisible={show}
                     closeModal={refuseDeleteBookAction}
                     acceptDeleteAction={acceptDeleteBookAction}

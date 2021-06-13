@@ -3,6 +3,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import WelcomeScreen from "./WelcomeScreen";
 import Authors from "./Authors/Authors";
 import Books from "./Books/Books";
+import Footer from "./Footer";
 
 const Library=()=> {
     const [AllAuthorList, setAllAuthorList] = useState<IAuthor[]>([]);
@@ -27,6 +28,11 @@ const Library=()=> {
                 </Col>
                 <Col className="" md={6} xs={12}>
                     <Authors returnAllAuthors={getAllAuthors}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={12}>
+                    <Footer/>
                 </Col>
             </Row>
         </Container>
