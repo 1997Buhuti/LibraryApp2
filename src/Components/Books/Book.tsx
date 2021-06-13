@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import {Col, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
 import {Trash2, Edit} from 'react-feather';
+import DeleteBookModal from "./DeleteBookModal";
 
 type bookProps = {
     book: IBook;
     index: number;
+    handleDeleteBook:(id:string)=>void
 }
 const showEditTip = (props: any) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -18,11 +20,19 @@ const showDeleteTip = (props: any) => (
 );
 const Author: React.FC<bookProps>= (props) => {
 
+    const [show, setShow] = useState(false);
     //handler for the delete button
     const handleDeleteButton = () => {
-        console.log('hello')
+        setShow(true);
     }
 
+    const acceptDeleteBookAction = () => {
+        props.handleDeleteBook(props.book.id);
+        setShow(false);
+    }
+    const refuseDeleteBookAction = () => {
+        setShow(false);
+    }
     const handleEditButton = () => {
         console.log('hello')
     }
@@ -52,6 +62,12 @@ const Author: React.FC<bookProps>= (props) => {
                         </OverlayTrigger>
                     </Col>
                 </Row>
+                <DeleteBookModal
+                    bookToDelete={props.book.title?props.book.title:""}
+                    isVisible={show}
+                    closeModal={refuseDeleteBookAction}
+                    acceptDeleteAction={acceptDeleteBookAction}
+                />
             </Row>
 
         </Col>
