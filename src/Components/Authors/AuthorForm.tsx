@@ -6,37 +6,37 @@ import {v4 as uuidv4} from 'uuid'
 type AuthorFormProps = {
     setAuthorFormVisible: (params: boolean) => void;
     handleAddAuthor: (author: IAuthor) => void;
-    AuthorToUpdate: IAuthor | null;
-    AuthorIndexToUpdate: number | null;
+    authorToUpdate: IAuthor | null;
+    authorIndexToUpdate: number | null;
     handleAuthorUpdate: (updatedAuthor: IAuthor, index: number | null) => void;
 }
 const AuthorForm: FC<AuthorFormProps> = (props) => {
 
     const [validated, setValidated] = useState(false);
-    const [AuthorName, setAuthorName] = useState<string | null>("")
+    const [authorName, setAuthorName] = useState<string | null>("")
 
     useEffect(() => {
-        if (!props.AuthorToUpdate) {
+        if (!props.authorToUpdate) {
             setAuthorName("");
             return;
         }
-        setAuthorName(props.AuthorToUpdate.name);
-    }, [props.AuthorToUpdate])
+        setAuthorName(props.authorToUpdate.name);
+    }, [props.authorToUpdate])
 
     const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         e.stopPropagation();
         setValidated(true);
-        if (AuthorName === "" || null) {
+        if (authorName === "" || null) {
             return;
         }
-        if (props.AuthorToUpdate) {
-            props.handleAuthorUpdate({...props.AuthorToUpdate, name: AuthorName},
-                props.AuthorIndexToUpdate);
+        if (props.authorToUpdate) {
+            props.handleAuthorUpdate({...props.authorToUpdate, name: authorName},
+                props.authorIndexToUpdate);
             setAuthorName(null);
             return;
         }
-        props.handleAddAuthor({name: AuthorName, id: uuidv4()});
+        props.handleAddAuthor({name: authorName, id: uuidv4()});
         setAuthorName(null);
         props.setAuthorFormVisible(false);
     };
@@ -54,7 +54,7 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
         <Col xs={12}>
             <Row>
                 <Col xs={10} className="author-form-title px-0 mt-3 pb-1">
-                    <u> {!props.AuthorToUpdate ? 'Create' : 'Update'} Author</u>
+                    <u> {!props.authorToUpdate ? 'Create' : 'Update'} Author</u>
                 </Col>
                 <Col xs={2} className="close-button px-0 mt-3 pt-2 pb-1 text-right">
                     <XCircle onClick={() => handleCloseForm()}/>
@@ -72,7 +72,7 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
                                     type="text"
                                     size="sm"
                                     className="author-input"
-                                    value={AuthorName ? AuthorName : ''}
+                                    value={authorName ? authorName : ''}
                                     onChange={handleAuthorNameChange}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -81,7 +81,7 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
                         </Form.Row>
                         <Form.Row className="float-right pt-4">
                             <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-0 " type="submit">
-                                {props.AuthorToUpdate ? 'Update' : 'Create'}</Button>
+                                {props.authorToUpdate ? 'Update' : 'Create'}</Button>
                         </Form.Row>
                     </Form>
                 </Col>

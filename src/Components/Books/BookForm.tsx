@@ -11,8 +11,8 @@ type BookFormProps = {
     setBookFormVisible: (params: boolean) => void;
     handleAddBook: (Book: IBook) => void;
     authorsAvailable: IAuthor[];
-    BookToUpdate: IBook | null;
-    BookIndexToUpdate: number | null;
+    bookToUpdate: IBook | null;
+    bookIndexToUpdate: number | null;
     handleBookUpdate: (updatedBook: IBook, index: number | null) => void;
 }
 const BookForm: FC<BookFormProps> = (props) => {
@@ -28,18 +28,18 @@ const BookForm: FC<BookFormProps> = (props) => {
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
 
     useEffect(() => {
-        if (!props.BookToUpdate) {
+        if (!props.bookToUpdate) {
             setBookTitle("");
             setPrice("");
             return;
         }
-        const authorName=props.BookToUpdate.author;
-        const id=props.BookToUpdate.id;
+        const authorName=props.bookToUpdate.author;
+        const id=props.bookToUpdate.id;
         const authorOption: ReactSelectOption = {value:id  + '', label:authorName?authorName:""};
-        setBookTitle(props.BookToUpdate.title);
-        setPrice(props.BookToUpdate.price);
+        setBookTitle(props.bookToUpdate.title);
+        setPrice(props.bookToUpdate.price);
         setSelectedAuthor(authorOption);
-    }, [props.BookToUpdate])
+    }, [props.bookToUpdate])
 
     // Change book Title
     const handBookTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -88,9 +88,9 @@ const BookForm: FC<BookFormProps> = (props) => {
         if ((BookTitle === "") || (price === "") || (selectedAuthor === null)) {
             return;
         }
-        if (props.BookToUpdate) {
-            props.handleBookUpdate({...props.BookToUpdate, title: BookTitle},
-                props.BookIndexToUpdate);
+        if (props.bookToUpdate) {
+            props.handleBookUpdate({...props.bookToUpdate, title: BookTitle},
+                props.bookIndexToUpdate);
             setBookTitle(null);
             setPrice("");
             setSelectedAuthor(null);
@@ -108,7 +108,7 @@ const BookForm: FC<BookFormProps> = (props) => {
         <Col xs={12}>
             <Row>
                 <Col xs={10} className="book-form-title px-0 mt-3 pb-1">
-                    <u>{!props.BookToUpdate ? 'Create' : 'Update'} Book</u>
+                    <u>{!props.bookToUpdate ? 'Create' : 'Update'} Book</u>
                 </Col>
                 <Col xs={2} className="close-button px-0 mt-3 pt-2 pb-1 text-right">
                     <XCircle onClick={() => handleCloseButton()}/>
@@ -178,7 +178,7 @@ const BookForm: FC<BookFormProps> = (props) => {
                         </Form.Row>
                         <Form.Row className="float-right pt-4 ">
                             <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-0 " type="submit">
-                                {props.BookToUpdate ? 'Update' : 'Create'}</Button>
+                                {props.bookToUpdate ? 'Update' : 'Create'}</Button>
                         </Form.Row>
                     </Form>
                 </Col>

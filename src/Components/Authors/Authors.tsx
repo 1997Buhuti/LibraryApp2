@@ -5,21 +5,22 @@ import {Plus} from "react-feather";
 import AuthorForm from "./AuthorForm";
 
 type AuthorsProps = {
-    returnAllAuthors: (authors: IAuthor[]) => void
+    authors: IAuthor[];
+    setAuthors: (author:IAuthor[]) => void;
 };
 const Authors: FC<AuthorsProps> = (props) => {
-    const [AuthorFormVisible, setAuthorFormVisible] = useState<Boolean>(false);
-    const [Authors, setAuthors] = useState<IAuthor[]>([])
-    const [AuthorToUpdate, setAuthorToUpdate] = useState<IAuthor | null>(null)
-    const [AuthorIndexToUpdate, setAuthorIndexToUpdate] = useState<number | null>(null)
+    const {authors,setAuthors}=props;
+    const [authorFormVisible, setAuthorFormVisible] = useState<Boolean>(false);
+    const [authorToUpdate, setAuthorToUpdate] = useState<IAuthor | null>(null)
+    const [authorIndexToUpdate, setAuthorIndexToUpdate] = useState<number | null>(null)
 
     useEffect(() => {
-        if (!AuthorToUpdate) {
+        if (!authorToUpdate) {
             return;
         }
 
         setAuthorFormVisible(true);
-    }, [AuthorToUpdate])
+    }, [authorToUpdate])
 
 
     const handleAddAuthorButtonClicked = () => {
@@ -27,13 +28,12 @@ const Authors: FC<AuthorsProps> = (props) => {
         setAuthorFormVisible(true);
     }
     const handleAddAuthor = (newAuthor: IAuthor) => {
-        const newAuthorList: IAuthor[] = Authors.slice();
+        const newAuthorList: IAuthor[] = authors.slice();
         newAuthorList.push(newAuthor);
         setAuthors(newAuthorList);
-        props.returnAllAuthors(newAuthorList);
     }
     const handleDeleteAuthor = (id: string) => {
-        setAuthors(Authors.filter(author => author.id !== id))
+        setAuthors(authors.filter(author => author.id !== id))
     }
 
     const handleUpdateAuthorRequest = (author: IAuthor, index: number) => {
@@ -45,7 +45,7 @@ const Authors: FC<AuthorsProps> = (props) => {
         if (!index) {
             return;
         }
-        const newAuthorList: IAuthor[] = Authors.slice();
+        const newAuthorList: IAuthor[] = authors.slice();
         newAuthorList.splice(index - 1, 1, updatedAuthor);
         setAuthors(newAuthorList)
         setAuthorToUpdate(null);
@@ -62,7 +62,7 @@ const Authors: FC<AuthorsProps> = (props) => {
             </Row>
             <Row>
                 <Col xs={12} className=" author-list-container px-0 pt-4">
-                    <AuthorList Authors={Authors} handleDeleteAuthor={handleDeleteAuthor}
+                    <AuthorList authors={authors} handleDeleteAuthor={handleDeleteAuthor}
                                 handleUpdateAuthorRequest={handleUpdateAuthorRequest}/>
                 </Col>
             </Row>
@@ -74,10 +74,10 @@ const Authors: FC<AuthorsProps> = (props) => {
             </Row>
             <Row>
                 <Col className="author-form-container" xl={9} xs={12}>
-                    {AuthorFormVisible && <AuthorForm setAuthorFormVisible={setAuthorFormVisible}
+                    {authorFormVisible && <AuthorForm setAuthorFormVisible={setAuthorFormVisible}
                                                       handleAddAuthor={handleAddAuthor}
-                                                      AuthorToUpdate={AuthorToUpdate}
-                                                      AuthorIndexToUpdate={AuthorIndexToUpdate}
+                                                      authorToUpdate={authorToUpdate}
+                                                      authorIndexToUpdate={authorIndexToUpdate}
                                                       handleAuthorUpdate={handleAuthorUpdate}
                     />}
                 </Col>

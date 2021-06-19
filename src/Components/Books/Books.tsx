@@ -5,28 +5,29 @@ import BookList from "./BookList";
 import BookForm from "./BookForm";
 
 type BooksProps = {
-    authorsAvailable: () => IAuthor[]
+    authors: IAuthor[];
 };
 const Books: FC<BooksProps> = (props) => {
-    const [BookFormVisible, setBookFormVisible] = useState<Boolean>(false);
-    const [Books, setBooks] = useState<IBook[]>([])
-    const [BookToUpdate, setBookToUpdate] = useState<IBook | null>(null)
-    const [BookIndexToUpdate, setBookIndexToUpdateToUpdate] = useState<number | null>(null)
+    const {authors} =props;
+    const [bookFormVisible, setBookFormVisible] = useState<Boolean>(false);
+    const [books, setBooks] = useState<IBook[]>([])
+    const [bookToUpdate, setBookToUpdate] = useState<IBook | null>(null)
+    const [bookIndexToUpdate, setBookIndexToUpdateToUpdate] = useState<number | null>(null)
 
     useEffect(() => {
-        if (!BookToUpdate) {
+        if (!bookToUpdate) {
             return;
         }
 
         setBookFormVisible(true);
-    }, [BookToUpdate])
+    }, [bookToUpdate])
 
     const handleAddBookButtonClicked = () => {
         setBookToUpdate(null);
         setBookFormVisible(true);
     }
     const handleAddBook = (newBook: IBook) => {
-        const newBookList: IBook[] = Books.slice();
+        const newBookList: IBook[] = books.slice();
         newBookList.push(newBook);
         setBooks(newBookList);
     }
@@ -38,19 +39,17 @@ const Books: FC<BooksProps> = (props) => {
         if (!index) {
             return;
         }
-        console.log('updated book');
-        console.log(updatedBook.author);
-        const newBookList: IBook[] = Books.slice();
+        const newBookList: IBook[] = books.slice();
         newBookList.splice(index, 1, updatedBook);
+        console.log(newBookList)
         setBooks(newBookList);
         setBookToUpdate(null);
         setBookIndexToUpdateToUpdate(null);
         setBookFormVisible(false);
     }
     const handleDeleteBook = (id: string) => {
-        setBooks(Books.filter(book => book.id !== id));
+        setBooks(books.filter(book => book.id !== id));
     }
-    const authors = props.authorsAvailable();
     return (
         <Container className="px-md-6 px-sm-5 px-xs-5">
             <Row>
@@ -60,7 +59,7 @@ const Books: FC<BooksProps> = (props) => {
             </Row>
             <Row>
                 <Col xs={12} className=" book-list-container px-0 pt-4">
-                    <BookList books={Books} handleDeleteBook={handleDeleteBook}
+                    <BookList books={books} handleDeleteBook={handleDeleteBook}
                               handleUpdateBookRequest={handleUpdateBookRequest}/>
                 </Col>
             </Row>
@@ -72,11 +71,11 @@ const Books: FC<BooksProps> = (props) => {
             </Row>
             <Row>
                 <Col className="book-form-container" xl={9} xs={12}>
-                    {BookFormVisible && <BookForm setBookFormVisible={setBookFormVisible}
+                    {bookFormVisible && <BookForm setBookFormVisible={setBookFormVisible}
                                                   handleAddBook={handleAddBook}
                                                   authorsAvailable={authors}
-                                                  BookToUpdate={BookToUpdate}
-                                                  BookIndexToUpdate={BookIndexToUpdate}
+                                                  bookToUpdate={bookToUpdate}
+                                                  bookIndexToUpdate={bookIndexToUpdate}
                                                   handleBookUpdate={handleBookUpdate}
 
                     />}
