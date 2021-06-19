@@ -18,7 +18,9 @@ type BookFormProps = {
 const BookForm: FC<BookFormProps> = (props) => {
     const authors = props.authorsAvailable;
 
+    //validations for the react select
     const [validated, setValidated] = useState(false);
+    // Book Title
     const [BookTitle, setBookTitle] = useState<string | null>("");
     // Book Price
     const [price, setPrice] = useState<string>("");
