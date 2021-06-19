@@ -30,10 +30,15 @@ const BookForm: FC<BookFormProps> = (props) => {
     useEffect(() => {
         if (!props.BookToUpdate) {
             setBookTitle("");
+            setPrice("");
             return;
         }
+        const authorName=props.BookToUpdate.author;
+        const id=props.BookToUpdate.id;
+        const authorOption: ReactSelectOption = {value:id  + '', label:authorName?authorName:""};
         setBookTitle(props.BookToUpdate.title);
         setPrice(props.BookToUpdate.price);
+        setSelectedAuthor(authorOption);
     }, [props.BookToUpdate])
 
     // Change book Title
@@ -48,6 +53,7 @@ const BookForm: FC<BookFormProps> = (props) => {
     const handleOnBookAuthorChange = (selectedOption: ValueType<ReactSelectOption, any>) => {
         setSelectedAuthor(selectedOption);
     };
+    //validation for the Author Dropdown
     const [validateSelect, setValidateSelect] = useState<boolean>(false);
 
     useEffect(() => {

@@ -11,8 +11,8 @@ const Footer:FC=()=>{
                 <Card.Text>
                     <p>No. 60, Cotta Rd, Colombo 08,</p>
                     <p>Sri Lanka.</p>
-                    <span>
-                        <Facebook/> <Twitter/> <Instagram/><span/>
+                    <span className='media-icons mt-1'>
+                        <Facebook/> <Twitter/> <Instagram/>
                     </span>
                 </Card.Text>
             </Card.Body>

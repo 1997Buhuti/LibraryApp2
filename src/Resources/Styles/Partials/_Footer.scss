@@ -19,6 +19,10 @@
     padding-bottom: 0;
     color: white;
     background-color: #000d7d;
+
+    .media-icons{
+      cursor: pointer;
+    }
   }
 
   .footer-bottom {
@@ -26,6 +30,7 @@
     padding-bottom: 0;
     background-color: #00013b;
   }
+
 }
 
 @media screen and (max-width: 768px) {

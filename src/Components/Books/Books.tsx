@@ -38,8 +38,10 @@ const Books: FC<BooksProps> = (props) => {
         if (!index) {
             return;
         }
+        console.log('updated book');
+        console.log(updatedBook.author);
         const newBookList: IBook[] = Books.slice();
-        newBookList.splice(index - 1, 1, updatedBook);
+        newBookList.splice(index, 1, updatedBook);
         setBooks(newBookList);
         setBookToUpdate(null);
         setBookIndexToUpdateToUpdate(null);

@@ -20,22 +20,23 @@ const showDeleteTip = (props: any) => (
     </Tooltip>
 );
 const Author: React.FC<bookProps> = (props) => {
-
+    //state for the delete modal
     const [show, setShow] = useState(false);
+
     //handler for the delete button
     const handleDeleteButton = () => {
         setShow(true);
     }
-
+    //handler for the edit button
+    const handleEditButton = () => {
+        props.handleUpdateBook(props.book, props.index)
+    }
     const acceptDeleteBookAction = () => {
         props.handleDeleteBook(props.book.id);
         setShow(false);
     }
     const refuseDeleteBookAction = () => {
         setShow(false);
-    }
-    const handleEditButton = () => {
-        props.handleUpdateBook(props.book, props.index)
     }
     return (
         <Col xs={12} className=" book-info pt-2 pb-2">
