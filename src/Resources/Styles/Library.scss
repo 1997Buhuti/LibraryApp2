@@ -1,3 +1,4 @@
+@import "./Partials/breakpoints";
 .Library{
   .Welcome-Screen{
     img{
@@ -13,7 +14,7 @@
     }
   }
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: $small) {
   .photo-credits{
     font-size: small;
   }

@@ -1,5 +1,5 @@
 @import "colors";
-
+@import "breakpoints";
 .Footer {
   .footer-header {
     padding-top: 5px;
@@ -33,7 +33,7 @@
 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $medium) {
   .Footer {
     .footer-header {
       h3{

@@ -1,4 +1,5 @@
 @import "colors";
+@import "breakpoints";
 .authors-title {
   font-size: xx-large;
   border-bottom: 2.3px solid black;
@@ -9,6 +10,7 @@
       font-size: x-large;
     }
     .icons{
+      display: none;
       .edit-button{
         color: $edit_btn_color;
         width: 22px;
@@ -24,6 +26,9 @@
     }
 
     &:hover{
+      .icons{
+        display: inherit;
+      }
       background-color: $list_hover_color;
     }
   }
@@ -62,7 +67,7 @@
 
 //Media Queries
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width:$medium) {
   .authors-title {
     font-size: x-large;
     border-bottom: 2px solid black;

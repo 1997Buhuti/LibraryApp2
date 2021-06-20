@@ -173,7 +173,7 @@ const BookForm: FC<BookFormProps> = (props) => {
                                     })}
                                 />
                                 {validateSelect &&
-                                <span style={{color: '#dc3545', fontSize: 'small'}}>Please Fill Empty Field!</span>}
+                                <span className="validation-msg">Please Fill Empty Field!</span>}
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 <Form.Control.Feedback type="invalid">Please Fill Empty Field!</Form.Control.Feedback>
                             </Form.Group>
