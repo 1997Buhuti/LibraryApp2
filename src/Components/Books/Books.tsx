@@ -41,7 +41,6 @@ const Books: FC<BooksProps> = (props) => {
         }
         const newBookList: IBook[] = books.slice();
         newBookList.splice(index, 1, updatedBook);
-        console.log(newBookList)
         setBooks(newBookList);
         setBookToUpdate(null);
         setBookIndexToUpdateToUpdate(null);
@@ -70,7 +69,7 @@ const Books: FC<BooksProps> = (props) => {
                 </Col>
             </Row>
             <Row>
-                <Col className="book-form-container" xl={9} xs={12}>
+                <Col className="book-form-container px-0" xl={9} xs={12}>
                     {bookFormVisible && <BookForm setBookFormVisible={setBookFormVisible}
                                                   handleAddBook={handleAddBook}
                                                   authorsAvailable={authors}

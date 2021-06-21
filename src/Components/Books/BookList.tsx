@@ -22,7 +22,7 @@ const BookList: FC<BookListProps> = (props) => {
     return (
         <Row className="mx-0">
             <Col className="px-0" xs={12}>
-                <span className="display-book-msg">{displayNoBook ? 'No books listed here' : ''}</span>
+                <span className="font-italic">{displayNoBook ? 'No books listed here' : ''}</span>
                 {
                     props.books.map((book, index) => {
                         return <Book book={book} key={book.id} index={index}

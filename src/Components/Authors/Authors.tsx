@@ -73,7 +73,7 @@ const Authors: FC<AuthorsProps> = (props) => {
                 </Col>
             </Row>
             <Row>
-                <Col className="author-form-container" xl={9} xs={12}>
+                <Col className="author-form-container px-0" xl={9} xs={12}>
                     {authorFormVisible && <AuthorForm setAuthorFormVisible={setAuthorFormVisible}
                                                       handleAddAuthor={handleAddAuthor}
                                                       authorToUpdate={authorToUpdate}

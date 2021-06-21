@@ -30,6 +30,7 @@ const Author: React.FC<bookProps> = (props) => {
     //handler for the edit button
     const handleEditButton = () => {
         props.handleUpdateBook(props.book, props.index)
+        console.log(props.index);
     }
     const acceptDeleteBookAction = () => {
         props.handleDeleteBook(props.book.id);

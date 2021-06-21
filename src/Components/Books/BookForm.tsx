@@ -1,12 +1,11 @@
 import React, {ChangeEvent, FC, useEffect, useState} from "react";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {XCircle} from "react-feather";
-// @ts-ignore
-import * as CurrencyFormat from 'react-currency-format';
 import Select from "react-select";
 import {v4 as uuidv4} from "uuid";
 import {ValueType} from "react-select";
 
+const CurrencyFormat = require('react-currency-format');
 type BookFormProps = {
     setBookFormVisible: (params: boolean) => void;
     handleAddBook: (Book: IBook) => void;
@@ -35,9 +34,9 @@ const BookForm: FC<BookFormProps> = (props) => {
             setPrice("");
             return;
         }
-        const authorName=props.bookToUpdate.author;
-        const id=props.bookToUpdate.id;
-        const authorOption: ReactSelectOption = {value:id  + '', label:authorName?authorName:""};
+        const authorName = props.bookToUpdate.author;
+        const id = props.bookToUpdate.id;
+        const authorOption: ReactSelectOption = {value: id + '', label: authorName ? authorName : ""};
         setBookTitle(props.bookToUpdate.title);
         setPrice(props.bookToUpdate.price);
         setSelectedAuthor(authorOption);
@@ -59,13 +58,17 @@ const BookForm: FC<BookFormProps> = (props) => {
     const [validateSelect, setValidateSelect] = useState<boolean>(false);
 
     useEffect(() => {
-        const options: ReactSelectOption[] = authors ? authors.map((author: IAuthor, index: number) => {
-            // @ts-ignore
-            const authorOption: ReactSelectOption = {value: index + '', label: author.name};
+        const options: (ReactSelectOption)[] = authors ? authors.map((author: IAuthor, index: number) => {
+            while (author.name !== null) {
+                const authorOption: ReactSelectOption = {value: index + '', label: author.name};
+                return authorOption;
+            }
+            const authorOption: ReactSelectOption = {value: '', label: ''};
             return authorOption;
         }) : [];
 
         setAuthorOptions(options);
+
     }, [authors]);
 
     useEffect(() => {
@@ -107,9 +110,9 @@ const BookForm: FC<BookFormProps> = (props) => {
     };
 
     return (
-        <Col xs={12}>
-            <Row>
-                <Col xs={10} className="book-form-title px-0 mt-3 pb-1">
+        <Col xs={12} className="px-0">
+            <Row className="mx-0">
+                <Col xs={10} className="book-form-title pr-0 pl-0 mt-3 pb-3">
                     <u>{!props.bookToUpdate ? 'Create' : 'Update'} Book</u>
                 </Col>
                 <Col xs={2} className="close-button px-0 mt-3 pt-2 pb-1 text-right">
@@ -117,7 +120,7 @@ const BookForm: FC<BookFormProps> = (props) => {
                 </Col>
             </Row>
 
-            <Row xs={12}>
+            <Row xs={12} className="mx-0">
                 <Col className="px-0" xs={12}>
                     <Form className="book-form" noValidate validated={validated} onSubmit={handleSubmit}>
                         <Form.Row>
@@ -160,6 +163,7 @@ const BookForm: FC<BookFormProps> = (props) => {
                                     className="author-select"
                                     value={selectedAuthor}
                                     onChange={handleOnBookAuthorChange}
+                                    isClearable={true}
                                     options={authorOptions}
                                     theme={theme => ({
                                         ...theme,
@@ -179,7 +183,7 @@ const BookForm: FC<BookFormProps> = (props) => {
                             </Form.Group>
                         </Form.Row>
                         <Form.Row className="float-right pt-4 ">
-                            <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-0 " type="submit">
+                            <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-1 " type="submit">
                                 {props.bookToUpdate ? 'Update' : 'Create'}</Button>
                         </Form.Row>
                     </Form>

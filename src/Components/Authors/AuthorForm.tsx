@@ -51,9 +51,9 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
     }
 
     return (
-        <Col xs={12}>
-            <Row>
-                <Col xs={10} className="author-form-title px-0 mt-3 pb-1">
+        <Col xs={12} className="px-0">
+            <Row className="mx-0">
+                <Col xs={10} className="author-form-title pr-0 pl-0 mt-3 pb-3">
                     <u> {!props.authorToUpdate ? 'Create' : 'Update'} Author</u>
                 </Col>
                 <Col xs={2} className="close-button px-0 mt-3 pt-2 pb-1 text-right">
@@ -61,7 +61,7 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
                 </Col>
             </Row>
 
-            <Row xs={12}>
+            <Row className="mx-0" xs={12} >
                 <Col className="px-0" xs={12}>
                     <Form className="author-form" noValidate validated={validated} onSubmit={handleSubmit}>
                         <Form.Row className="author-name-group">
@@ -80,8 +80,8 @@ const AuthorForm: FC<AuthorFormProps> = (props) => {
                             </Form.Group>
                         </Form.Row>
                         <Form.Row className="float-right pt-4">
-                            <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-0 " type="submit">
-                                {props.authorToUpdate ? 'Update' : 'Create'}</Button>
+                            <Button className="submit-author-btn pl-4 pr-4 pt-0 pb-1 " type="submit">
+                                {props.authorToUpdate ? 'Update' : 'Create'} </Button>
                         </Form.Row>
                     </Form>
                 </Col>
