@@ -18,7 +18,6 @@ const Authors: FC<AuthorsProps> = (props) => {
         if (!authorToUpdate) {
             return;
         }
-
         setAuthorFormVisible(true);
     }, [authorToUpdate])
 
@@ -33,7 +32,7 @@ const Authors: FC<AuthorsProps> = (props) => {
         setAuthors(newAuthorList);
     }
     const handleDeleteAuthor = (id: string) => {
-        setAuthors(authors.filter(author => author.id !== id))
+        setAuthors(authors.filter(author => author.id !== id));
     }
 
     const handleUpdateAuthorRequest = (author: IAuthor, index: number) => {
@@ -86,5 +85,4 @@ const Authors: FC<AuthorsProps> = (props) => {
         </Container>
     );
 }
-
 export default Authors;

@@ -18,7 +18,6 @@ const Books: FC<BooksProps> = (props) => {
         if (!bookToUpdate) {
             return;
         }
-
         setBookFormVisible(true);
     }, [bookToUpdate])
 

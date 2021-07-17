@@ -11,6 +11,7 @@ type AuthorFormProps = {
     handleAuthorUpdate: (updatedAuthor: IAuthor, index: number | null) => void;
 }
 const AuthorForm: FC<AuthorFormProps> = (props) => {
+    const {authorToUpdate}=props;
 
     const [validated, setValidated] = useState(false);
     const [authorName, setAuthorName] = useState<string | null>("")

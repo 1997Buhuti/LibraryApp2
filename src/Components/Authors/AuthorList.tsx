@@ -10,6 +10,7 @@ type AuthorListProps = {
 const AuthorList: React.FC<AuthorListProps> = (props) => {
     const {authors} = props;
     const [displayNoAuthor, setdisplayNoAuthor] = useState(false);
+
     useEffect(() => {
         if (authors.length === 0) {
             setdisplayNoAuthor(true);
